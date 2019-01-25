@@ -33,10 +33,10 @@ namespace ShoppingSamples
         internal string DefaultPath { get { return defaultPath; } }
         internal Options CliOptions { get; set; }
 
-        internal abstract void initializeConfig(bool noConfig);
-        internal abstract void initializeService(BaseClientService.Initializer init);
-        internal abstract void initializeService(BaseClientService.Initializer init, Uri u);
-        internal abstract void runCalls();
+        internal abstract void InitializeConfig(bool noConfig);
+        internal abstract void InitializeService(BaseClientService.Initializer init);
+        internal abstract void InitializeService(BaseClientService.Initializer init, Uri u);
+        internal abstract void RunCalls();
 
         internal class Options
         {
@@ -50,7 +50,7 @@ namespace ShoppingSamples
             public bool NoConfig { get; set; }
         }
 
-        internal void startSamples(string[] args)
+        internal void StartSamples(string[] args)
         {
             Console.WriteLine("{0} Command Line Sample", ApiName);
             Console.WriteLine("============================================");
@@ -63,9 +63,9 @@ namespace ShoppingSamples
                 CliOptions.ConfigPath = DefaultPath;
             }
 
-            initializeConfig(CliOptions.NoConfig);
+            InitializeConfig(CliOptions.NoConfig);
 
-            var initializer = Authenticator.authenticate(Config, Scope);
+            var initializer = Authenticator.Authenticate(Config, Scope);
             if (initializer == null)
             {
                 Console.WriteLine("Failed to authenticate, so exiting.");
@@ -80,7 +80,7 @@ namespace ShoppingSamples
 
             if (Environment.GetEnvironmentVariable(endpointEnvVar) == null)
             {
-                initializeService(init);
+                InitializeService(init);
             }
             else
             {
@@ -93,7 +93,7 @@ namespace ShoppingSamples
                 try
                 {
                     var checkedUri = new Uri(url);
-                    initializeService(init, checkedUri);
+                    InitializeService(init, checkedUri);
                     Console.WriteLine("Using non-standard API endpoint: {0}", Service.BaseUri);
                 }
                 catch (UriFormatException e)
@@ -103,7 +103,9 @@ namespace ShoppingSamples
                 }
             }
 
-            runCalls();
+            RunCalls();
+
+            Console.ReadLine();
         }
     }
 }

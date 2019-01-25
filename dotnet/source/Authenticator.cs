@@ -16,7 +16,7 @@ namespace ShoppingSamples
 
         private static readonly string TOKEN_FILE = "stored-token.json";
 
-        public static IConfigurableHttpClientInitializer authenticate(
+        public static IConfigurableHttpClientInitializer Authenticate(
             BaseConfig config, string scope)
         {
             String[] scopes = new[] { scope };

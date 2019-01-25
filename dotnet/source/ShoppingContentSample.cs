@@ -12,7 +12,7 @@ namespace ShoppingSamples.Content
         private static readonly int MaxListPageSize = 50;
 
 
-        internal override void runCalls()
+        internal override void RunCalls()
         {
             AccountsSample accountsSample = new AccountsSample(service);
             AccountstatusesSample accountstatusesSample =
@@ -32,7 +32,7 @@ namespace ShoppingSamples.Content
             {
                 // Non-MCA calls
                 productsSample.RunCalls(merchantId, config.WebsiteURL);
-                productstatusesSample.RunCalls(merchantId);
+                //productstatusesSample.RunCalls(merchantId);
                 datafeedsSample.RunCalls(merchantId);
                 accountstatusesSample.RunCalls(merchantId);
                 accountsSample.RunCalls(

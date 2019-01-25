@@ -55,7 +55,7 @@ namespace ShoppingSamples.Manufacturers
         internal override string ApiName { get { return "Manufacturer Center API"; } }
         internal override IClientService Service { get { return service; } }
 
-        internal override void initializeConfig(bool noconfig)
+        internal override void InitializeConfig(bool noconfig)
         {
             if (noconfig == true)
             {
@@ -65,17 +65,17 @@ namespace ShoppingSamples.Manufacturers
             config = ManufacturerConfig.Load(CliOptions.ConfigPath);
         }
 
-        internal override void initializeService(BaseClientService.Initializer init)
+        internal override void InitializeService(BaseClientService.Initializer init)
         {
             service = new ManufacturerCenterService(init);
         }
 
-        internal override void initializeService(BaseClientService.Initializer init, Uri u)
+        internal override void InitializeService(BaseClientService.Initializer init, Uri u)
         {
             service = new ManufacturerCenterServiceWithBaseUri(init, u);
         }
 
-        internal override void runCalls()
+        internal override void RunCalls()
         {
             ProductsSample productsSample = new ProductsSample(service, MaxListPageSize);
 
@@ -87,7 +87,7 @@ namespace ShoppingSamples.Manufacturers
         internal static void Main(string[] args)
         {
             var samples = new ShoppingManufacturerSample();
-            samples.startSamples(args);
+            samples.StartSamples(args);
         }
     }
 }

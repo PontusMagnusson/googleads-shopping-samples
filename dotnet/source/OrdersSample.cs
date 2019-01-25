@@ -33,7 +33,7 @@ namespace ShoppingSamples.Content
             this.prng = new Random();
         }
 
-        internal override void runCalls()
+        internal override void RunCalls()
         {
             var merchantId = config.MerchantId.Value;
 

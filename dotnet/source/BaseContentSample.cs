@@ -36,7 +36,7 @@ namespace ShoppingSamples.Content
         internal override string ApiName { get { return "Content API for Shopping"; } }
         internal override IClientService Service { get { return service; } }
 
-        internal override void initializeConfig(bool noConfig)
+        internal override void InitializeConfig(bool noConfig)
         {
             if (noConfig)
             {
@@ -48,21 +48,21 @@ namespace ShoppingSamples.Content
             }
         }
 
-        internal override void initializeService(BaseClientService.Initializer init)
+        internal override void InitializeService(BaseClientService.Initializer init)
         {
             service = new ShoppingContentService(init);
-            retrieveConfiguration(service, config);
-            createSandbox(init, new Uri(service.BaseUri));
+            RetrieveConfiguration(service, config);
+            CreateSandbox(init, new Uri(service.BaseUri));
         }
 
-        internal override void initializeService(BaseClientService.Initializer init, Uri u)
+        internal override void InitializeService(BaseClientService.Initializer init, Uri u)
         {
             service = new ShoppingContentServiceWithBaseUri(init, u);
-            retrieveConfiguration(service, config);
-            createSandbox(init, u);
+            RetrieveConfiguration(service, config);
+            CreateSandbox(init, u);
         }
 
-        private void createSandbox(BaseClientService.Initializer init, Uri u) {
+        private void CreateSandbox(BaseClientService.Initializer init, Uri u) {
             var pathParts = service.BasePath
                 .Split(new char[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
             var basename = pathParts.Last();
@@ -85,7 +85,7 @@ namespace ShoppingSamples.Content
         // - WebsiteUrl
         // Also use the first Merchant Center account to which the authenticated user has access
         // if no Merchant Center ID was provided.
-        internal void retrieveConfiguration(ShoppingContentService service, MerchantConfig config)
+        internal void RetrieveConfiguration(ShoppingContentService service, MerchantConfig config)
         {
             Console.WriteLine("Retrieving information for authenticated user.");
             var authinfo = service.Accounts.Authinfo().Execute();
